@@ -15,7 +15,7 @@ function Dashboard() {
   const [activeTab, setActiveTab] = useState('forms');
 
   useEffect(() => {
-    axios.get(`${process.env.WEB_SERVER_URL}/auth/me`, { withCredentials: true })
+    axios.get(`https://airtable-form-builder-xqkq.onrender.com/auth/me`, { withCredentials: true })
       .then(res => {
         setUser(res.data.user);
         fetchBases();
