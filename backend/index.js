@@ -16,7 +16,7 @@ connectDB();
 const app = express();
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? process.env.FRONTEND_URL || 'https://airtable-form-builder1.vercel.app/'
+    ? process.env.FRONTEND_URL || 'https://airtable-form-builder1.vercel.app'
     : 'http://localhost:3000',
   credentials: true
 }));
