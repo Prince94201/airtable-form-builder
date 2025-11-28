@@ -15,10 +15,10 @@ function ResponseViewer() {
 
   const fetchFormAndResponses = async () => {
     try {
-      const formResponse = await axios.get(`https://airtable-form-builder-xqkq.onrender.com/api/forms/${formId}`, { withCredentials: true });
+      const formResponse = await axios.get(`${process.env.WEB_SERVER_URL}/api/forms/${formId}`, { withCredentials: true });
       setForm(formResponse.data.form);
 
-      const responsesResponse = await axios.get(`https://airtable-form-builder-xqkq.onrender.com/api/forms/${formId}/responses`, { withCredentials: true });
+      const responsesResponse = await axios.get(`${process.env.WEB_SERVER_URL}/api/forms/${formId}/responses`, { withCredentials: true });
       setResponses(responsesResponse.data.responses);
       
       setLoading(false);
