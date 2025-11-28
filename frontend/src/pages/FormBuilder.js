@@ -20,7 +20,7 @@ function FormBuilder() {
 
   const fetchBases = async () => {
     try {
-      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/bases`, { withCredentials: true });
+      const response = await axios.get(`https://airtable-form-builder-xqkq.onrender.com/api/bases`, { withCredentials: true });
       setBases(response.data.bases || []);
     } catch (error) {
       console.error('Error fetching bases:', error);
@@ -29,7 +29,7 @@ function FormBuilder() {
 
   const fetchTables = async (baseId) => {
     try {
-      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/bases/${baseId}/tables`, { withCredentials: true });
+      const response = await axios.get(`https://airtable-form-builder-xqkq.onrender.com/api/bases/${baseId}/tables`, { withCredentials: true });
       setTables(response.data.tables || []);
       setSelectedBase(baseId);
       setFields([]);
@@ -41,7 +41,7 @@ function FormBuilder() {
 
   const fetchFields = async (baseId, tableId) => {
     try {
-      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/bases/${baseId}/${tableId}/fields`, { withCredentials: true });
+      const response = await axios.get(`https://airtable-form-builder-xqkq.onrender.com/api/bases/${baseId}/${tableId}/fields`, { withCredentials: true });
       setFields(response.data.fields || []);
       setSelectedTable(tableId);
       setQuestions([]);

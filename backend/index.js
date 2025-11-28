@@ -141,7 +141,7 @@ app.get("/oauth/callback", async (req, res) => {
     
     console.log("User saved:", user._id);
 
-    res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
+    res.redirect(`https://airtable-form-builder1.vercel.app/dashboard`);
   } catch (err) {
     console.error("TOKEN ERROR:", err.response?.data || err);
     res.status(500).send("Failed to exchange token");

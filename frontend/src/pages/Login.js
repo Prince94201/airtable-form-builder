@@ -2,7 +2,7 @@ import React from 'react';
 
 function Login() {
   const handleLogin = () => {
-    window.location.href = `${process.env.WEB_SERVER_URL}/auth/airtable`;
+    window.location.href = `https://airtable-form-builder-xqkq.onrender.com/auth/airtable`;
   };
 
   return (
