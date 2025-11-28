@@ -2,7 +2,7 @@ import React from 'react';
 
 function Login() {
   const handleLogin = () => {
-    window.location.href = 'http://localhost:4000/auth/airtable';
+    window.location.href = `${process.env.WEB_SERVER_URL}/auth/airtable`;
   };
 
   return (

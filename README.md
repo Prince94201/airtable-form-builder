@@ -22,12 +22,12 @@ Create `backend/.env`:
 MONGODB_URI=mongodb://username:password@cluster0/airtable_form_builder
 AIRTABLE_CLIENT_ID=your_client_id
 AIRTABLE_CLIENT_SECRET=your_client_secret
-AIRTABLE_REDIRECT_URI=http://localhost:4000/oauth/callback
+AIRTABLE_REDIRECT_URI=WEB_SERVER_URL/oauth/callback
 ```
 
 3. **Airtable OAuth**
 - Go to [Airtable Developer Hub](https://airtable.com/developers/web)
-- Create OAuth integration with redirect URI: `http://localhost:4000/oauth/callback`
+- Create OAuth integration with redirect URI: `${process.env.WEB_SERVER_URL}/oauth/callback`
 - Add scopes: `data.records:read`, `data.records:write`, `schema.bases:read`, `webhook:manage`
 
 ## Run

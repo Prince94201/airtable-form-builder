@@ -20,7 +20,7 @@ function FormBuilder() {
 
   const fetchBases = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/bases', { withCredentials: true });
+      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/bases`, { withCredentials: true });
       setBases(response.data.bases || []);
     } catch (error) {
       console.error('Error fetching bases:', error);
@@ -29,7 +29,7 @@ function FormBuilder() {
 
   const fetchTables = async (baseId) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/bases/${baseId}/tables`, { withCredentials: true });
+      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/bases/${baseId}/tables`, { withCredentials: true });
       setTables(response.data.tables || []);
       setSelectedBase(baseId);
       setFields([]);
@@ -41,7 +41,7 @@ function FormBuilder() {
 
   const fetchFields = async (baseId, tableId) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/bases/${baseId}/${tableId}/fields`, { withCredentials: true });
+      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/bases/${baseId}/${tableId}/fields`, { withCredentials: true });
       setFields(response.data.fields || []);
       setSelectedTable(tableId);
       setQuestions([]);
@@ -140,7 +140,7 @@ function FormBuilder() {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:4000/api/forms', {
+      const response = await axios.post(`${process.env.WEB_SERVER_URL}/api/forms`, {
         title: formTitle,
         airtableBaseId: selectedBase,
         airtableTableId: selectedTable,

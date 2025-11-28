@@ -15,10 +15,10 @@ function ResponseViewer() {
 
   const fetchFormAndResponses = async () => {
     try {
-      const formResponse = await axios.get(`http://localhost:4000/api/forms/${formId}`, { withCredentials: true });
+      const formResponse = await axios.get(`${process.env.WEB_SERVER_URL}/api/forms/${formId}`, { withCredentials: true });
       setForm(formResponse.data.form);
 
-      const responsesResponse = await axios.get(`http://localhost:4000/api/forms/${formId}/responses`, { withCredentials: true });
+      const responsesResponse = await axios.get(`${process.env.WEB_SERVER_URL}/api/forms/${formId}/responses`, { withCredentials: true });
       setResponses(responsesResponse.data.responses);
       
       setLoading(false);

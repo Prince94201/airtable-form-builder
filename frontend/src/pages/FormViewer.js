@@ -59,7 +59,7 @@ function FormViewer() {
 
   const fetchForm = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/forms/${formId}`);
+      const response = await axios.get(`${process.env.WEB_SERVER_URL}/api/forms/${formId}`);
       setForm(response.data.form);
       setLoading(false);
     } catch (error) {
@@ -97,7 +97,7 @@ function FormViewer() {
     setError('');
 
     try {
-      await axios.post(`http://localhost:4000/api/forms/${formId}/submit`, { answers });
+      await axios.post(`${process.env.WEB_SERVER_URL}/api/forms/${formId}/submit`, { answers });
       setSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
