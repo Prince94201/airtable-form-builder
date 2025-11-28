@@ -15,11 +15,17 @@ connectDB();
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.FRONTEND_URL || 'https://your-frontend-domain.com'
+    : 'http://localhost:3000',
   credentials: true
 }));
 app.use(express.json());
-app.use(session({ secret: "dev-secret", resave: false, saveUninitialized: true }));
+app.use(session({ 
+  secret: process.env.SESSION_SECRET || "dev-secret", 
+  resave: false, 
+  saveUninitialized: true 
+}));
 
 let code_verifier_permanent;
 
@@ -35,6 +41,20 @@ const mapAirtableFieldType = (airtableType) => {
 };
 
 const generateFormId = () => randomBytes(16).toString('hex');
+
+// Add root route
+app.get("/", (req, res) => {
+  res.json({ 
+    message: "Airtable Form Builder API", 
+    status: "running",
+    version: "1.0.0"
+  });
+});
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({ status: "healthy", timestamp: new Date().toISOString() });
+});
 
 app.get("/auth/airtable", async (req, res) => {
   const { code_verifier, code_challenge } = await generatePKCE();
@@ -407,4 +427,5 @@ app.post("/webhooks/airtable", async (req, res) => {
   }
 });
 
-app.listen(4000, () => console.log("Server running on http://localhost:4000"));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
